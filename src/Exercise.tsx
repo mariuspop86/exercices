@@ -8,7 +8,7 @@ function Exercise({ state, dispatch }: {state: State, dispatch: Dispatch<Actions
   return (
     <div>
       <div className="card">
-        <p>Excercitiul {count + 1}</p>
+        <p>Exercise {count + 1}</p>
         <span className="btn">{firstNumber}</span>
         <span className="sign">*</span>
         <span className="btn">{secondNumber}</span>
@@ -20,7 +20,7 @@ function Exercise({ state, dispatch }: {state: State, dispatch: Dispatch<Actions
           Next
         </button>
         <p>
-          Mai ai {max - count} exercitii.
+          Remaining {max - count} exersises.
         </p>
       </div>
     </div>
