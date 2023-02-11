@@ -1,6 +1,7 @@
-import {generateRandomNumber} from '../utils'
+import { generateRandomNumber } from '../utils'
+import { ActionTypes, ActionsTypes, State  } from '../Interface/state'
 
-export const initialState = {
+export const initialState: State = {
   count: 0,
   result: '',
   exercises: [],
@@ -9,24 +10,19 @@ export const initialState = {
   max: 4
 };
 
-export function reducer(state, action) {
+export function reducer(state: State, action: ActionsTypes): State {
   console.log(action.type)
   switch (action.type) {
-    case 'increment':
-      return {
-        ...state,
-        count: state.count + 1
-      };
-    case 'next':
+    case ActionTypes.NEXT:
       if (state.count >= state.max) {
         return state
       }
-      const { exercises } = state
+      const { exercises, firstNumber, secondNumber, result } = state
       exercises.push(
         {
-          firstNumber: state.firstNumber,
-          secondNumber: state.secondNumber,
-          result: state.result
+          firstNumber,
+          secondNumber,
+          result
         }
       )
 
@@ -38,12 +34,12 @@ export function reducer(state, action) {
         firstNumber: generateRandomNumber(6,10),
         secondNumber: generateRandomNumber()
       };
-    case 'solve':
+    case ActionTypes.SOLVE:
       return {
         ...state,
         result: action.payload
       }
-    case 'restart':
+    case ActionTypes.RESTART:
       return {
         count: 0,
         result: '',

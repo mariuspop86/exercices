@@ -1,6 +1,8 @@
+import { Dispatch } from 'react'
 import './App.css'
+import { ActionTypes, ActionsTypes, State } from './Interface/state'
 
-function Exercise({ state, dispatch }) {
+function Exercise({ state, dispatch }: {state: State, dispatch: Dispatch<ActionsTypes>}) {
   const { count, result, firstNumber, secondNumber, max } = state;
   
   return (
@@ -11,10 +13,10 @@ function Exercise({ state, dispatch }) {
         <span className="sign">*</span>
         <span className="btn">{secondNumber}</span>
         <span className="sign">=</span>
-        <input type="text" className="input" value={result} onChange={(e) => dispatch({type: 'solve', payload: e.target.value})} />
+        <input type="text" className="input" value={result} onChange={(e) => dispatch({type: ActionTypes.SOLVE, payload: e.target.value})} />
       </div>
       <div className="card">
-        <button onClick={() => dispatch({type: 'next'})}>
+        <button onClick={() => dispatch({type: ActionTypes.NEXT})}>
           Next
         </button>
         <p>
