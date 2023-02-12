@@ -1,13 +1,15 @@
 import { generateRandomNumber } from '../utils'
 import { ActionTypes, ActionsTypes, State  } from '../Interface/state'
 
+const MAX_NUMBER = 3;
+
 export const initialState: State = {
   count: 0,
   result: '',
   exercises: [],
   firstNumber: generateRandomNumber(6,10),
   secondNumber: generateRandomNumber(),
-  max: 30
+  max: MAX_NUMBER
 };
 
 export function reducer(state: State, action: ActionsTypes): State {
@@ -45,7 +47,7 @@ export function reducer(state: State, action: ActionsTypes): State {
         exercises: [],
         firstNumber: generateRandomNumber(6,10),
         secondNumber: generateRandomNumber(),
-        max: 4
+        max: MAX_NUMBER
       };
     default:
       return state;

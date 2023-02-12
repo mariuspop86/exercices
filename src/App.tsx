@@ -1,13 +1,15 @@
 import { useReducer, useEffect } from 'react'
 import './App.css'
 import {reducer, initialState} from './state/state'
-import Exercise from './Exercise'
-import Results from './Results'
+import Exercise from './components/Exercise'
+import Results from './components/Results'
+import Layout from './components/Layout'
+import NoMatch from './components/NoMatch'
 import { Routes, Route, Outlet, Link, useNavigate } from "react-router-dom";
 
 function App() {
   const [ state, dispatch ] = useReducer(reducer, initialState);
-  const { count, exercises, max } = state;
+  const { count, max } = state;
 
   const navigate = useNavigate();
 
@@ -22,7 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Exercise state={ state } dispatch={ dispatch } />} />
-          <Route path="results" element={<Results exercises={ exercises } dispatch={ dispatch } />} />
+          <Route path="results" element={<Results state={ state } dispatch={ dispatch } />} />
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
@@ -31,21 +33,3 @@ function App() {
 }
 
 export default App
-
-
-function Layout() {
-  return (
-    <Outlet />
-  );
-}
-
-function NoMatch() {
-  return (
-    <div>
-      <h2>Nothing to see here!</h2>
-      <p>
-        <Link to="/">Go to the home page</Link>
-      </p>
-    </div>
-  );
-}

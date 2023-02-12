@@ -1,9 +1,13 @@
-import { Dispatch } from 'react'
-import './App.css'
-import { ActionTypes, ActionsTypes, State } from './Interface/state'
+import { Dispatch, useRef, useEffect } from 'react'
+import { ActionTypes, ActionsTypes, State } from '../Interface/state'
 
 function Exercise({ state, dispatch }: {state: State, dispatch: Dispatch<ActionsTypes>}) {
+  const inputRef = useRef(null);
   const { count, result, firstNumber, secondNumber, max } = state;
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
   
   return (
     <div>
@@ -13,10 +17,19 @@ function Exercise({ state, dispatch }: {state: State, dispatch: Dispatch<Actions
         <span className="sign">*</span>
         <span className="btn">{secondNumber}</span>
         <span className="sign">=</span>
-        <input type="text" className="input" value={result} onChange={(e) => dispatch({type: ActionTypes.SOLVE, payload: e.target.value})} />
+        <input 
+          type="text" 
+          className="input" 
+          value={result} 
+          onChange={(e) => dispatch({type: ActionTypes.SOLVE, payload: e.target.value})} 
+          ref={inputRef} 
+          />
       </div>
       <div className="card">
-        <button onClick={() => dispatch({type: ActionTypes.NEXT})}>
+        <button onClick={() => {
+          dispatch({type: ActionTypes.NEXT})
+          inputRef.current.focus()
+        }}>
           Next
         </button>
         <p>
