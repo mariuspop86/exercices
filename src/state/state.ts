@@ -7,11 +7,10 @@ export const initialState: State = {
   exercises: [],
   firstNumber: generateRandomNumber(6,10),
   secondNumber: generateRandomNumber(),
-  max: 4
+  max: 30
 };
 
 export function reducer(state: State, action: ActionsTypes): State {
-  console.log(action.type)
   switch (action.type) {
     case ActionTypes.NEXT:
       if (state.count >= state.max) {
@@ -49,6 +48,6 @@ export function reducer(state: State, action: ActionsTypes): State {
         max: 4
       };
     default:
-      throw new Error();
+      return state;
   }
 }

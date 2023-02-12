@@ -1,29 +1,28 @@
 import { Dispatch } from 'react'
 import { ActionTypes, ActionsTypes, Exercice } from './Interface/state'
 import './App.css'
-import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from "react-router-dom";
+
 
 function Results({ dispatch, exercises } : { dispatch: Dispatch<ActionsTypes>, exercises: Exercice[] }) {
-  // const storage: [] = JSON.parse(localStorage.getItem("exercises") || '') || [];
-  // storage.push({
-  //   id: uuidv4(),
-  //   exercises
-  // })
-  // localStorage.setItem("exercises", JSON.stringify(storage));
+  const navigate = useNavigate();
 
   return (
     <div className="results">
-      <button onClick={() => dispatch({type: ActionTypes.RESTART})}>
-        Reincepe
+      <button onClick={() => {
+        dispatch({type: ActionTypes.RESTART})
+        navigate("/");
+      }}>
+        Restart
       </button>
       <div className="card">
         <table className="table-auto table">
           <thead>
             <tr>
-              <th>Nr.</th>
-              <th>Exercitiu</th>
-              <th>Raspuns</th>
-              <th>Corect</th>
+              <th>No.</th>
+              <th>Exercice</th>
+              <th>Response</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
