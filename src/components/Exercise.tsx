@@ -2,11 +2,13 @@ import { Dispatch, useRef, useEffect } from 'react'
 import { ActionTypes, ActionsTypes, State } from '../Interface/state'
 
 function Exercise({ state, dispatch }: {state: State, dispatch: Dispatch<ActionsTypes>}) {
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const { count, result, firstNumber, secondNumber, max } = state;
 
   useEffect(() => {
-    inputRef.current.focus();
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   }, []);
   
   return (
@@ -28,7 +30,9 @@ function Exercise({ state, dispatch }: {state: State, dispatch: Dispatch<Actions
       <div className="card">
         <button onClick={() => {
           dispatch({type: ActionTypes.NEXT})
-          inputRef.current.focus()
+          if (inputRef.current) {
+            inputRef.current.focus()
+          }
         }}>
           Next
         </button>

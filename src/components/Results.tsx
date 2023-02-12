@@ -1,5 +1,5 @@
 import { Dispatch, useEffect } from "react"
-import { ActionTypes, ActionsTypes, Exercice } from "../Interface/state"
+import { ActionTypes, ActionsTypes, Exercice, State } from "../Interface/state"
 import { useNavigate } from "react-router-dom"
 import ResultSwitcher from "./ResultSwitcher"
 
