@@ -1,7 +1,7 @@
 import { generateRandomNumber } from '../utils'
 import { ActionTypes, ActionsTypes, State  } from '../Interface/state'
 
-const MAX_NUMBER = 3;
+const MAX_NUMBER = 30;
 
 export const initialState: State = {
   count: 0,
